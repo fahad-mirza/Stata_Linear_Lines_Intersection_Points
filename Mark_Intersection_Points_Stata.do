@@ -14,7 +14,7 @@
 	* Store reference value in local
 	local ref_value = 59
 
-	* Create a constant variable for the reference line to create difference between
+	* Create a constant variable for the reference line which will be used to generate the difference between
 	* actual and reference
 	generate double y_ref = `ref_value'
 
@@ -25,7 +25,7 @@
 	generate double negposcross = .
 	generate double posnegcross = .
 
-	* Looping over observations to mark instances and store in variables generate in previous
+	* Looping over observations to mark crossing instances and store them in variables generated in previous
 	* step
 	local intersect = 1
 	forvalues i = 2/`=_N' {
@@ -51,6 +51,7 @@
 	levelsof obs if !missing(negposcross), local(lista)
 	levelsof obs if !missing(posnegcross), local(listb)
 
+	* Combining locals that will hold all instances of intersections
 	local int_obs `lista' `listb'
 
 
@@ -85,4 +86,5 @@
 			`points' ///
 			, ///
 			legend(off)
+
 
